@@ -64,6 +64,7 @@ const App = () => {
   const [audioNodes, setAudioNodes] = useState({});
   const [selectedMode, setSelectedMode] = useState(modes[0]);
   const [selectedSong, setSelectedSong] = useState(Object.keys(songs[modes[0]])[0]);
+  const selectedSongDetails = songs[selectedMode][selectedSong];
 
   const handleModeChange = (event) => {
     setSelectedMode(event.target.value);
@@ -150,6 +151,22 @@ const App = () => {
             <option key={songName} value={songName}>{songName}</option>
           ))}
         </select>
+      </div>
+      {/* Notes and YouTube Embed Container */}
+      <div className="notes-youtube-container">
+        <div className="notes">
+          Notes: {selectedSongDetails.notes}
+        </div>
+        <div className="youtube-embed">
+          <iframe
+            className="youtube-iframe"
+            src={`https://www.youtube.com/embed/${new URL(selectedSongDetails.youtube).searchParams.get('v')}`}
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        </div>
       </div>
     <div className="App" style={{ height: '50vh', position: 'absolute', bottom: 0, width: '100%', margin: 0, display: 'flex'}}>
       {Object.entries(keyBindings).map(([key, note]) => (

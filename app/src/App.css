@@ -23,3 +23,26 @@
   cursor: pointer;
 }
 
+
+/* Adjustments for better layout and styling */
+.notes-youtube-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Ensure aligned to the top */
+  margin: 20px auto; /* Center the container and add vertical space */
+  max-width: 1200px; /* Adjust based on your preference */
+}
+
+.notes {
+  flex: 1; /* Take up equal space */
+  margin-right: 20px; /* Add some space between the notes and the YouTube embed */
+}
+
+.youtube-embed {
+  flex: 1; /* Take up equal space */
+}
+
+.youtube-iframe {
+  width: 100%; /* Full width of the container */
+  height: 300px; /* Adjust height as needed */
+}
