@@ -29,20 +29,28 @@ const modes = ['Easy', 'Intermediate', 'Pro'];
 const songs = {
   'Easy': {
     'Mary Had a Little Lamb': {
-      notes: 'A A A',
+      notes: 'E D C D E E E D D D E G G E D C D E E E E D D E D C',
       youtube: 'https://www.youtube.com/watch?v=uYgp3lAfolo',
     },
     'Hot Cross Buns': {
-      notes: 'AAA',
+      notes: ' A G B B B B A A A B B B B A A B A G',
       youtube: 'https://www.youtube.com/watch?v=fM2xseupKlY',
     },
     'Row, Row, Row Your Boat': {
-      notes: 'AAA',
+      notes: 'C C C D E E D E F G G F E D C C D E E D E F G G F E D C',
       youtube: 'https://www.youtube.com/watch?v=Z1U8SBkAbLQ',
     },
     'Go Tell Aunt Rhody': {
-      notes: 'AAA',
+      notes: 'E D C D E E E D D E D C C E E E E D D E D C',
       youtube: 'https://www.youtube.com/watch?v=iYwcE5QEUG4',
+    },
+    'A-Tisket, A-Tasket' :{
+      notes: 'C C G G A A G F F E E D D C G G F F E E D G G F F E E D C',
+      youtube: 'https://www.youtube.com/watch?v=kI9-BJdP6cE',
+    },
+    'Jingle Bells' :{
+      notes: 'E E E E E E E E G C D E F F F F F E E E E D D E D G E E E E E D D E D C',
+      youtube: 'https://www.youtube.com/watch?v=ROqgdTRa0bE',
     },
   },
   'Intermediate': {
