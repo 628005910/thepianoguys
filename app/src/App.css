@@ -6,8 +6,8 @@
 .dropdown-container {
   position: absolute;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  /* transform: translateX(-50%); */
   padding: 20px;
   box-sizing: border-box;
   display: flex;
@@ -27,10 +27,10 @@
 /* Adjustments for better layout and styling */
 .notes-youtube-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: flex-start; /* Ensure aligned to the top */
-  margin: 20px auto; /* Center the container and add vertical space */
-  max-width: 1200px; /* Adjust based on your preference */
+  margin: auto; /*Center the container and add vertical space */
+  max-width: 75%; /*Adjust based on your preference*/
 }
 
 .notes {
@@ -44,5 +44,5 @@
 
 .youtube-iframe {
   width: 100%; /* Full width of the container */
-  height: 300px; /* Adjust height as needed */
+  height: 350px; /* Adjust height as needed */
 }

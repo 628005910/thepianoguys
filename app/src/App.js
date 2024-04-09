@@ -69,7 +69,8 @@ const renderNotesContent = (notes) => {
     return <img src={notes} alt="Sheet Music" style={{ maxWidth: '100%', height: 'auto' }} />;
   } else {
     // Otherwise, display notes as text
-    return `Notes: ${notes}`;
+    return `Notes: ${notes}`; //STYLE THIS! return a <p> tag styled to have top margin
+    //Want to have notes appear below the selection box?
   }
 };
 
@@ -182,17 +183,19 @@ const App = () => {
           ></iframe>
         </div>
       </div>
-      <div className="App" style={{ height: '50vh', position: 'absolute', bottom: 0, width: '100%', margin: 0, display: 'flex'}}>
+      <div className="App" style={{ height: '25vh', position: 'absolute', bottom: 0, width: '100%', margin: 0, display: 'flex'}}>
         {Object.entries(keyBindings).map(([key, note]) => (
           <div
             key={note}
             style={{
               flexGrow: 1,
               height: '100%',
+              alignSelf: 'flex-end',
               backgroundColor: pressedKeys[key] ? 'lightgreen' : note.includes('S') ? 'black' : 'white',
               color: note.includes('S') ? 'white' : 'black',
               border: '1px solid black',
               opacity: 1,
+              userSelect: 'none'
             }}
           >
             {note.replace('S', '#')}
