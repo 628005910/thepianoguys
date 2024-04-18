@@ -2,7 +2,26 @@
   text-align: center;
 }
 
-/* App.css */
+body {
+  background-color: #EBE0D5;
+}
+
+/* header styling */
+.header {
+  background-color: #7EBDC2; /* Professional header color */
+  padding: 10px 20px; /* Add padding to the header */
+  display: flex; /* Use flexbox layout */
+  justify-content: space-between;
+
+  margin: 1%;
+  border-radius: 10px; /* Rounded corners */
+}
+
+.logo img {
+  max-width: 70px; /* Set max width for logo */
+  max-height: 70px;
+}
+
 .dropdown-container {
   /* transform: translateX(-50%); */
   padding: 20px;
@@ -10,47 +29,93 @@
   display: flex;
   justify-content: center;
   gap: 20px; /* Adds space between the dropdowns */
+
+  margin-left: auto; /* Pushes the div to the center */
+  margin-right: auto; /* Pushes the div to the center */
+
 }
 
 .dropdown {
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
-  box-shadow: 0 2px 3px #eee;
   cursor: pointer;
 }
 
 /* Adjustments for better layout and styling */
 .notes-youtube-container {
   display: flex;
-  justify-content: space-evenly;
   align-items: flex-start; /* Ensure aligned to the top */
-  margin: auto; /*Center the container and add vertical space */
-  max-width: 75%; /*Adjust based on your preference*/
+  max-width: 100%; /*Adjust based on your preference*/
+  margin-top: 1%;
 }
 
 .notes {
-  flex: 1; /* Take up equal space */
-  margin-right: 20px; /* Add some space between the notes and the YouTube embed */
-  font-family: Arial, sans-serif; /* Choose a professional font stack */
-  font-size: 40px; /* Adjust font size as needed */
-  font-weight: 400; /* Normal font weight */
+  flex: 2; /* Take up equal space */
+  padding-left: 3%;
+  padding-right: 3%;
+
+  display: flex; /* Use flexbox layout */
+  justify-content: center; /* Center the image horizontally */
+  align-items: center; /* Center the image vertically */
+}
+
+#notes-text {
+  font-family: Goudy Old Style,Garamond,Big Caslon,Times New Roman,serif; 
+  font-size: 80px; /* Adjust font size as needed */
+  font-weight: 500; /* Normal font weight */
   color: #333; /* Professional text color */
   line-height: 1.5; /* Adjust line height for readability */
   letter-spacing: 0.5px; /* Add slight letter spacing for clarity */
 }
 
-.youtube-embed {
-  flex: 1; /* Take up equal space */
- 
-  border: 2px solid #4e8fd6; /* Light blue border */
-  border-radius: 5px; /* Rounded corners */
-  padding: 20px; /* Add some padding inside the border */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+#sheet-music-img {
+  display: flex; /* Use flexbox layout */
+  justify-content: center; /* Center the image horizontally */
+  align-items: center; /* Center the image vertically */
+}
 
+.youtube-embed {
+  flex: 2; /* Take up equal space */
+ 
+  border: 8px solid #7EBDC2; /* Light blue border */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  
+  width: 100%;
+  height: 100%;
+  
 }
 
 .youtube-iframe {
   width: 100%; /* Full width of the container */
-  height: 350px; /* Adjust height as needed */
+  height: 375px; /* Adjust height as needed */
+  
 }
+
+#description {
+  flex: 1; /* Take up equal space */
+  font-family: Goudy Old Style,Garamond,Big Caslon,Times New Roman,serif; 
+  font-size: 20px; /* Adjust font size as needed */
+  font-weight: 400; /* Normal font weight */
+  color: #333; /* Professional text color */
+  line-height: 1.5; /* Adjust line height for readability */
+  letter-spacing: 0.5px; /* Add slight letter spacing for clarity */
+
+  padding-left: 6%;
+  padding-right: 6%;
+}
+
+#skills-header, #notes-header {
+  text-align: center;
+  font-family: Goudy Old Style,Garamond,Big Caslon,Times New Roman,serif; 
+  
+  color: #333; /* Professional text color */
+  line-height: 1.5; /* Adjust line height for readability */
+  letter-spacing: 0.5px; /* Add slight letter spacing for clarity */
+
+  padding: 0;
+  margin: 0;
+}
+
+

@@ -31,6 +31,7 @@ const songs = {
     'Mary Had a Little Lamb': {
       notes: 'E D C D E E E D D D E G G E D C D E E E E D D E D C',
       youtube: 'https://www.youtube.com/watch?v=uYgp3lAfolo',
+      description: 'This song helps develop basic rhytm.'
     },
     'Hot Cross Buns': {
       notes: ' A G B B B B A A A B B B B A A B A G',
@@ -56,7 +57,8 @@ const songs = {
   'Intermediate': {
     'Für Elise': {
       notes: 'furelise.png',
-      youtube: 'https://www.youtube.com/watch?v=YVpM2GsdQEQ'
+      youtube: 'https://www.youtube.com/watch?v=YVpM2GsdQEQ',
+      description: 'This song helps develop skills.'
     }
   },
   'Pro': {
@@ -66,13 +68,21 @@ const songs = {
 const renderNotesContent = (notes) => {
   if (notes.endsWith('.png')) {
     // If notes is a path to a PNG file, render an image
-    return <img src={notes} alt="Sheet Music" style={{ maxWidth: '100%', height: 'auto' }} />;
+    return <img id="sheet-music-img" src={notes} alt="Sheet Music" style={{ maxWidth: '100%', height: 'auto' }} />;
   } else {
     // Otherwise, display notes as text
-    return `Notes: ${notes}`; //STYLE THIS! return a <p> tag styled to have top margin
-    //Want to have notes appear below the selection box?
+    return (
+      <div>
+        <h2 id="notes-header">Notes</h2>
+        <p style={{ marginTop: '10px' }}>{notes}</p>
+      </div>
+    );
   }
 };
+
+const renderDescriptionContent = (description) => {
+  return <p id="description">{description}</p>
+}
 
 const App = () => {
   const [pressedKeys, setPressedKeys] = useState({});
@@ -146,31 +156,38 @@ const App = () => {
   }, [pressedKeys, audioNodes]);
 
   return (
-    <div>
-      <div className="dropdown-container">
-        <select 
-          className="dropdown"
-          value={selectedMode} 
-          onChange={handleModeChange}
-        >
-          {modes.map((mode) => (
-            <option key={mode} value={mode}>{mode}</option>
-          ))}
-        </select>
-        <select 
-          className="dropdown"
-          value={selectedSong} 
-          onChange={handleSongChange}
-        >
-          {Object.keys(songs[selectedMode]).map((songName) => (
-            <option key={songName} value={songName}>{songName}</option>
-          ))}
-        </select>
+    <div id="body">
+      <header class="header">
+        <div class="logo">
+            <img src="pianoLogo.jpg" alt="Piano Logo" />
+        </div>
+        <div className="dropdown-container">
+          <select 
+            className="dropdown"
+            value={selectedMode} 
+            onChange={handleModeChange}
+          >
+            {modes.map((mode) => (
+              <option key={mode} value={mode}>{mode}</option>
+            ))}
+          </select>
+          <select 
+            className="dropdown"
+            value={selectedSong} 
+            onChange={handleSongChange}
+          >
+            {Object.keys(songs[selectedMode]).map((songName) => (
+              <option key={songName} value={songName}>{songName}</option>
+            ))}
+          </select>
       </div>
+    </header>
       {/* Notes and YouTube Embed Container */}
       <div className="notes-youtube-container">
         <div className="notes">
-          {renderNotesContent(selectedSongDetails.notes)}
+          <div className='notes-text'>
+            {renderNotesContent(selectedSongDetails.notes)}
+          </div>
         </div>
         <div className="youtube-embed">
           <iframe
@@ -181,6 +198,10 @@ const App = () => {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           ></iframe>
+        </div>
+        <div className="skills-description">
+          <h2 id="skills-header">Skills</h2>
+          {renderDescriptionContent(selectedSongDetails.description)}
         </div>
       </div>
       <div className="App" style={{ height: '25vh', position: 'absolute', bottom: 0, width: '100%', margin: 0, display: 'flex'}}>
