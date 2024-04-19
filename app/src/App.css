@@ -98,7 +98,7 @@ body {
   justify-content: center; /* Center the image horizontally */
   align-items: center; /* Center the image vertically */
 
-  border: 8px solid #EBE0D5; /* Light blue border */
+  border: 4px solid #EBE0D5; /* Light blue border */
   border-radius: 5px; /* Rounded corners */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
 }
@@ -106,14 +106,15 @@ body {
 .youtube-embed {
 
   display: flex;
-  flex: 1.5; /* Take up twice the space of notes and description */
- 
-  border: 8px solid #EBE0D5; /* Light blue border */
+  flex: 1.2; /* Take up twice the space of notes and description */
+  aspect-ratio: 16 / 9;
+
+  border: 4px solid #EBE0D5; /* Light blue border */
   border-radius: 5px; /* Rounded corners */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
   
   width: 100%;
-  height: 397px;
+  height: 100%;
 
   align-items: center;
   align-content: center;
@@ -122,13 +123,13 @@ body {
 
 .youtube-iframe {
   width: 100%; /* Full width of the container */
-  height: 397px; /* Adjust height as needed */
+  height: 100%; /* Adjust height as needed */
   
 }
 
 #description {
   font-family: Goudy Old Style,Garamond,Big Caslon,Times New Roman,serif; 
-  font-size: 30px; /* Adjust font size as needed */
+  font-size: 22px; /* Adjust font size as needed */
   font-weight: 400; /* Normal font weight */
   color: #242424; /* Professional text color */
   line-height: 1.5; /* Adjust line height for readability */
@@ -138,7 +139,7 @@ body {
   padding-right: 6%;
 }
 
-.skills-description {
+.description {
   flex: 1; /* Take up equal space */
 
   margin-left: 1%;
@@ -146,8 +147,8 @@ body {
 
 }
 
-#skills-header, #notes-header {
-  font-size: 60px;
+#description-header, #notes-header {
+  font-size: 40px;
 
   text-align: center;
   font-family: Goudy Old Style,Garamond,Big Caslon,Times New Roman,serif; 
