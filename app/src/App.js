@@ -173,7 +173,7 @@ const App = () => {
   const setDisplayPianoNotes = (isChecked) => {
     
       let pianoNotes = document.querySelectorAll('.pianoNotes');
-      
+
       pianoNotes.forEach(p => {
         p.style.visibility = isChecked ? 'visible' : 'hidden';
       });
@@ -199,9 +199,7 @@ const App = () => {
         <div class="logo">
             <img id="logo-img" src="pianoLogo.jpg" alt="Piano Logo" />
         </div>
-        <a href="https://github.com/628005910/thepianoguys" class="image-link">
-            <img id="GitHub-logo" src="github-mark.png" alt="GitHub logo image" />
-          </a>
+        
         <Link to="/">
             <button id="home-button">Home</button>
           </Link>
@@ -244,6 +242,9 @@ const App = () => {
           </label>
 
         </>
+        <a href="https://github.com/628005910/thepianoguys" class="image-link">
+            <img id="GitHub-logo" src="github-mark.png" alt="GitHub logo image" />
+          </a>
 
     </header>
       {/* Notes and YouTube Embed Container */}
