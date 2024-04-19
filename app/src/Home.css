@@ -1,0 +1,70 @@
+#main-content {
+    background-color: #179191;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#mission-div {
+    width: 500px;
+    height: 50%;
+
+    border: 8px solid #EBE0D5; /* Light blue border */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    background-color: #EBE0D5;
+}
+
+#mission-description {
+    text-align: center;
+
+    font-family: Goudy Old Style,Garamond,Big Caslon,Times New Roman,serif; 
+    font-size: 20px; /* Adjust font size as needed */
+    font-weight: 400; /* Normal font weight */
+    color: #242424; /* Professional text color */
+    line-height: 1; /* Adjust line height for readability */
+    letter-spacing: 0.5px; /* Add slight letter spacing for clarity */
+
+    margin-bottom: 1%;
+    margin-top: 1%;
+}
+
+#mission-div {
+    margin-bottom: 1%;
+}
+
+#mission-header {
+    text-align: center;
+
+    font-family: Goudy Old Style,Garamond,Big Caslon,Times New Roman,serif; 
+    font-size: 50px; /* Adjust font size as needed */
+    font-weight: 400; /* Normal font weight */
+    color: #242424; /* Professional text color */
+    line-height: 1; /* Adjust line height for readability */
+    letter-spacing: 0.5px; /* Add slight letter spacing for clarity */
+
+    margin-top: 1%;
+    margin-bottom: 0%;
+}
+
+#logo-img2 {
+    width: 270px;
+    height: 270px;
+
+    margin-top: 2%;
+    margin-bottom: 1%;
+
+    border: 8px solid #EBE0D5; 
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+#piano-button {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+
+

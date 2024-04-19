@@ -3,43 +3,65 @@
 }
 
 body {
-  background-color: #EBE0D5;
+  background-color: #179191;
 }
 
 /* header styling */
 .header {
-  background-color: #7EBDC2; /* Professional header color */
-  padding: 10px 20px; /* Add padding to the header */
+  background-color: #EBE0D5; /* Professional header color */
+  padding: 10px;
+
   display: flex; /* Use flexbox layout */
-  justify-content: space-between;
+  flex-direction: row;
 
   margin: 1%;
   border-radius: 10px; /* Rounded corners */
 }
 
-.logo img {
-  max-width: 70px; /* Set max width for logo */
-  max-height: 70px;
+.logo {
+  display: flex;
+  justify-content: center; /* Center the image horizontally */
+  align-items: center; /* Center the image vertically */
+  height: 80px; /* Set a fixed height for the logo container */
+  width: 80px;
+}
+
+#GitHub-logo {
+  width: 40px;
+  height: 40px;
+
+  margin-left: 30px;
+  margin-top: 20px;
+}
+
+#logo-img {
+  max-width: 100%; /* Ensure the image doesn't exceed the container's width */
+  max-height: 100%; /* Ensure the image doesn't exceed the container's height */
 }
 
 .dropdown-container {
   /* transform: translateX(-50%); */
   padding: 20px;
-  box-sizing: border-box;
+  
   display: flex;
-  justify-content: center;
+  
   gap: 20px; /* Adds space between the dropdowns */
 
-  margin-left: auto; /* Pushes the div to the center */
-  margin-right: auto; /* Pushes the div to the center */
+  
 
 }
 
-.dropdown {
+.dropdown, #home-button {
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
   cursor: pointer;
+}
+
+#home-button {
+  height: 40px;
+  margin-left: 30px;
+  margin-top: 20px;
 }
 
 /* Adjustments for better layout and styling */
@@ -47,24 +69,27 @@ body {
   display: flex;
   align-items: flex-start; /* Ensure aligned to the top */
   max-width: 100%; /*Adjust based on your preference*/
-  margin-top: 1%;
+  margin-top: 0%;
 }
 
 .notes {
-  flex: 2; /* Take up equal space */
+  flex: 1; /* Take up equal space */
   padding-left: 3%;
-  padding-right: 3%;
+  padding-right: 2%;
 
   display: flex; /* Use flexbox layout */
   justify-content: center; /* Center the image horizontally */
   align-items: center; /* Center the image vertically */
+
+  text-align: center;
+  
 }
 
 #notes-text {
   font-family: Goudy Old Style,Garamond,Big Caslon,Times New Roman,serif; 
-  font-size: 80px; /* Adjust font size as needed */
-  font-weight: 500; /* Normal font weight */
-  color: #333; /* Professional text color */
+  font-size: 120px; /* Adjust font size as needed */
+  font-weight: 600; /* Normal font weight */
+  color: #EBE0D5; /* Professional text color */
   line-height: 1.5; /* Adjust line height for readability */
   letter-spacing: 0.5px; /* Add slight letter spacing for clarity */
 }
@@ -73,17 +98,26 @@ body {
   display: flex; /* Use flexbox layout */
   justify-content: center; /* Center the image horizontally */
   align-items: center; /* Center the image vertically */
+
+  border: 8px solid #EBE0D5; /* Light blue border */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
 }
 
 .youtube-embed {
-  flex: 2; /* Take up equal space */
+
+  display: flex;
+  flex: 1; /* Take up equal space */
  
-  border: 8px solid #7EBDC2; /* Light blue border */
+  border: 8px solid #EBE0D5; /* Light blue border */
   border-radius: 5px; /* Rounded corners */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
   
   width: 100%;
   height: 100%;
+
+  align-items: center;
+  align-content: center;
   
 }
 
@@ -96,9 +130,9 @@ body {
 #description {
   flex: 1; /* Take up equal space */
   font-family: Goudy Old Style,Garamond,Big Caslon,Times New Roman,serif; 
-  font-size: 20px; /* Adjust font size as needed */
+  font-size: 30px; /* Adjust font size as needed */
   font-weight: 400; /* Normal font weight */
-  color: #333; /* Professional text color */
+  color: #242424; /* Professional text color */
   line-height: 1.5; /* Adjust line height for readability */
   letter-spacing: 0.5px; /* Add slight letter spacing for clarity */
 
@@ -106,11 +140,20 @@ body {
   padding-right: 6%;
 }
 
+.skills-description {
+  
+  margin-left: 1%;
+  margin-right: 2%;
+
+}
+
 #skills-header, #notes-header {
+  font-size: 60px;
+
   text-align: center;
   font-family: Goudy Old Style,Garamond,Big Caslon,Times New Roman,serif; 
   
-  color: #333; /* Professional text color */
+  color: #EBE0D5; /* Professional text color */
   line-height: 1.5; /* Adjust line height for readability */
   letter-spacing: 0.5px; /* Add slight letter spacing for clarity */
 

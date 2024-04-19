@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import { Link } from 'react-router-dom';
 
 const keyBindings = {
   'a': 'C',
@@ -68,13 +69,13 @@ const songs = {
 const renderNotesContent = (notes) => {
   if (notes.endsWith('.png')) {
     // If notes is a path to a PNG file, render an image
-    return <img id="sheet-music-img" src={notes} alt="Sheet Music" style={{ maxWidth: '100%', height: 'auto' }} />;
+    return <img id="sheet-music-img" src={notes} alt="Sheet Music" style={{ maxWidth: '100%', height: 'auto', paddingRight: '0' }} />;
   } else {
     // Otherwise, display notes as text
     return (
       <div>
         <h2 id="notes-header">Notes</h2>
-        <p style={{ marginTop: '10px' }}>{notes}</p>
+        <p style={{ marginTop: '10px', fontSize: '50px' }}>{notes}</p>
       </div>
     );
   }
@@ -153,15 +154,22 @@ const App = () => {
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('keyup', handleKeyUp);
     };
-  }, [pressedKeys, audioNodes]);
+  });
 
   return (
     <div id="body">
       <header class="header">
         <div class="logo">
-            <img src="pianoLogo.jpg" alt="Piano Logo" />
+            <img id="logo-img" src="pianoLogo.jpg" alt="Piano Logo" />
         </div>
+        <a href="https://github.com/628005910/thepianoguys" class="image-link">
+            <img id="GitHub-logo" src="github-mark.png" alt="GitHub logo image" />
+          </a>
+        <Link to="/">
+            <button id="home-button">Home</button>
+          </Link>
         <div className="dropdown-container">
+          
           <select 
             className="dropdown"
             value={selectedMode} 
@@ -180,7 +188,7 @@ const App = () => {
               <option key={songName} value={songName}>{songName}</option>
             ))}
           </select>
-      </div>
+        </div>
     </header>
       {/* Notes and YouTube Embed Container */}
       <div className="notes-youtube-container">
@@ -204,7 +212,7 @@ const App = () => {
           {renderDescriptionContent(selectedSongDetails.description)}
         </div>
       </div>
-      <div className="App" style={{ height: '25vh', position: 'absolute', bottom: 0, width: '100%', margin: 0, display: 'flex'}}>
+      <div className="App" style={{ height: '24vh', position: 'absolute', bottom: 0, width: '100%', margin: 0, display: 'flex'}}>
         {Object.entries(keyBindings).map(([key, note]) => (
           <div
             key={note}
