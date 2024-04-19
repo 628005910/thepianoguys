@@ -35,7 +35,7 @@ const songs = {
       description: 'This song helps develop basic rhytm.'
     },
     'Hot Cross Buns': {
-      notes: ' A G B B B B A A A B B B B A A B A G',
+      notes: ' E D C E D C C C C C D D D D E D C',
       youtube: 'https://www.youtube.com/watch?v=fM2xseupKlY',
     },
     'Row, Row, Row Your Boat': {
@@ -265,58 +265,83 @@ const App = () => {
           ></iframe>
         </div>
         <div className="skills-description">
-          <h2 id="skills-header">Skills</h2>
+          <h2 id="skills-header">Description</h2>
           {renderDescriptionContent(selectedSongDetails.description)}
         </div>
       </div>
 
 
-      <div className="App" style={{ height: '22vh', position: 'absolute', bottom: 0, left: 325, width: '60%', margin: 0, display: 'flex'}}>
+      <div className="App" style={{ height: '22vh', position: 'absolute', bottom: 0, left: '20%', width: '60%', margin: 0, display: 'flex', justifyContent: 'center' }}>
         {Object.entries(keyBindings).map(([key, note]) => {
-          let bottom = 35;
-          let left = 0;
+          let bottom = 0;
+          let left = '0%';
+          let width = '9%'; // Width of white keys
+          let height = '100%'; // Height of white keys
+
           switch (note) {
             case 'CS':
-              left = 55;
+              left = '6.5%';
+              width = '5%'; // Width of black keys
+              height = '70%'; // Adjust the top of black keys
+              bottom = '30%'; // Adjust the top of black keys
               break;
             case 'DS':
-              left = 137;
+              left = '15.6%';
+              width = '5%';
+              height = '70%'; // Adjust the top of black keys
+              bottom = '30%';
               break;
             case 'FS':
-              left = 295;
+              left = '33.7%';
+              width = '5%';
+              height = '70%'; // Adjust the top of black keys
+              bottom = '30%';
               break;
             case 'GS':
-              left = 377;
+              left = '42.9%';
+              width = '5%';
+              height = '70%'; // Adjust the top of black keys
+              bottom = '30%';
               break;
             case 'AS':
-              left = 459;
+              left = '51.9%';
+              width = '5%';
+              height = '70%'; // Adjust the top of black keys
+              bottom = '30%';
               break;
             case 'CS2':
-              left = 629;
+              left = '70.1%';
+              width = '5%';
+              height = '70%'; // Adjust the top of black keys
+              bottom = '30%';
               break;
             case 'DS2':
-              left = 719;
+              left = '79.3%';
+              width = '5%';
+              height = '70%'; // Adjust the top of black keys
+              bottom = '30%';
               break;
           }
+          
           if (note.includes('S')) {
             return (
-              <div class="sharps-and-flats"
+              <div
                 key={note}
                 style={{
                   position: 'absolute',
-                  bottom: `${bottom}px`, // Adjust bottom position
-                  left: `${left}px`, // Adjust left position
-                  height: '126px',
-                  width: '52px',
-                  backgroundColor: pressedKeys[key] ? '#07a038' : note.includes('S') ? 'black' : 'white',
-                  color: note.includes('S') ? 'white' : 'black',
+                  bottom,
+                  left,
+                  width,
+                  height,
+                  backgroundColor: pressedKeys[key] ? '#07a038' : 'black',
+                  color: 'white',
                   border: '1px solid black',
                   borderRadius: '5px',
                   opacity: 1,
                   userSelect: 'none'
                 }}
               >
-                <p class="pianoNotes">{note.replace('S', '#')}</p>
+                <p className="pianoNotes">{note.replace('S', '#')}</p>
               </div>
             );
           } else {
@@ -325,41 +350,42 @@ const App = () => {
                 key={note}
                 style={{
                   flexGrow: 1,
+                  width,
                   height: '100%',
                   alignSelf: 'flex-end',
-                  backgroundColor: pressedKeys[key] ? '#1cc852' : note.includes('S') ? 'black' : 'white',
-                  color: note.includes('S') ? 'white' : 'black',
+                  backgroundColor: pressedKeys[key] ? '#1cc852' : 'white',
+                  color: 'black',
                   border: '1px solid black',
                   borderRadius: '5px',
                   opacity: 1,
                   userSelect: 'none'
                 }}
               >
-                <p class="pianoNotes">{note.replace('S', '#')}</p>
+                <p className="pianoNotes">{note}</p>
               </div>
             );
           }
         })}
       </div>
-
-      <p class="keyboard-letters" style={{ position: 'absolute', bottom: '0px', left: '361px' }}>a</p>
-      <p class="keyboard-letters" style={{ color: 'white', position: 'absolute', bottom: '27px', left: '400px' }}>w</p>
-      <p class="keyboard-letters" style={{ position: 'absolute', bottom: '0px', left: '443px' }}>s</p>
-      <p class="keyboard-letters" style={{ color: 'white', position: 'absolute', bottom: '27px', left: '484px' }}>e</p>
-      <p class="keyboard-letters" style={{ position: 'absolute', bottom: '0px', left: '524px' }}>d</p>
-      <p class="keyboard-letters" style={{ position: 'absolute', bottom: '0px', left: '605px' }}>f</p>
-      <p class="keyboard-letters" style={{ color: 'white', position: 'absolute', bottom: '27px', left: '642px' }}>t</p>
-      <p class="keyboard-letters" style={{ position: 'absolute', bottom: '0px', left: '682px' }}>g</p>
-      <p class="keyboard-letters" style={{ color: 'white', position: 'absolute', bottom: '27px', left: '724px' }}>y</p>
-      <p class="keyboard-letters" style={{ position: 'absolute', bottom: '0px', left: '764px' }}>h</p>
-      <p class="keyboard-letters" style={{ color: 'white', position: 'absolute', bottom: '27px', left: '806px' }}>u</p>
-      <p class="keyboard-letters" style={{ position: 'absolute', bottom: '0px', left: '848px' }}>j</p>
-      <p class="keyboard-letters" style={{ position: 'absolute', bottom: '0px', left: '929px' }}>k</p>
-      <p class="keyboard-letters" style={{ color: 'white', position: 'absolute', bottom: '27px', left: '975px' }}>o</p>
-      <p class="keyboard-letters" style={{ position: 'absolute', bottom: '0px', left: '1021px' }}>l</p>
-      <p class="keyboard-letters" style={{ color: 'white', position: 'absolute', bottom: '27px', left: '1065px' }}>p</p>
-      <p class="keyboard-letters" style={{ position: 'absolute', bottom: '0px', left: '1113px' }}>;</p>
-      <p class="keyboard-letters" style={{ position: 'absolute', bottom: '0px', left: '1200px' }}>'</p>
+      
+      <p class="keyboard-letters" style={{ position: 'absolute', bottom: '0px', left: '22.6%' }}>a</p>
+      <p class="keyboard-letters" style={{ color: 'white', position: 'absolute', bottom: '6%', left: '25.1%' }}>w</p>
+      <p class="keyboard-letters" style={{ position: 'absolute', bottom: '0px', left: '28.0%' }}>s</p>
+      <p class="keyboard-letters" style={{ color: 'white', position: 'absolute', bottom: '6%', left: '30.7%' }}>e</p>
+      <p class="keyboard-letters" style={{ position: 'absolute', bottom: '0px', left: '33.3%' }}>d</p>
+      <p class="keyboard-letters" style={{ position: 'absolute', bottom: '0px', left: '39.0%' }}>f</p>
+      <p class="keyboard-letters" style={{ color: 'white', position: 'absolute', bottom: '6%', left: '41.7%' }}>t</p>
+      <p class="keyboard-letters" style={{ position: 'absolute', bottom: '0px', left: '44.3%' }}>g</p>
+      <p class="keyboard-letters" style={{ color: 'white', position: 'absolute', bottom: '6%', left: '47.1%' }}>y</p>
+      <p class="keyboard-letters" style={{ position: 'absolute', bottom: '0px', left: '49.8%' }}>h</p>
+      <p class="keyboard-letters" style={{ color: 'white', position: 'absolute', bottom: '6%', left: '52.5%' }}>u</p>
+      <p class="keyboard-letters" style={{ position: 'absolute', bottom: '0px', left: '55.4%' }}>j</p>
+      <p class="keyboard-letters" style={{ position: 'absolute', bottom: '0px', left: '60.8%' }}>k</p>
+      <p class="keyboard-letters" style={{ color: 'white', position: 'absolute', bottom: '6%', left: '63.3%' }}>o</p>
+      <p class="keyboard-letters" style={{ position: 'absolute', bottom: '0px', left: '66.2%' }}>l</p>
+      <p class="keyboard-letters" style={{ color: 'white', position: 'absolute', bottom: '6%', left: '68.8%' }}>p</p>
+      <p class="keyboard-letters" style={{ position: 'absolute', bottom: '0px', left: '71.7%' }}>;</p>
+      <p class="keyboard-letters" style={{ position: 'absolute', bottom: '0px', left: '77.3%' }}>'</p>
 
     </div>
   );
