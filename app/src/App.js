@@ -75,7 +75,7 @@ const renderNotesContent = (notes) => {
     return (
       <div>
         <h2 id="notes-header">Notes</h2>
-        <p style={{ marginTop: '10px', fontSize: '50px' }}>{notes}</p>
+        <p id="little-notes" style={{ marginTop: '10px', fontSize: '50px' }}>{notes}</p>
       </div>
     );
   }
@@ -156,6 +156,43 @@ const App = () => {
     };
   });
 
+  const setDisplayKeyboardLetters = (isChecked) => {
+    if (isChecked) {
+      let keyboardLetters = document.querySelectorAll('.keyboard-letters');
+      keyboardLetters.forEach(p => {
+        p.style.display = 'block';
+      });
+    } else {
+      let keyboardLetters = document.querySelectorAll('.keyboard-letters');
+      keyboardLetters.forEach(p => {
+        p.style.display = 'none';
+      });
+    }
+  };
+
+  const setDisplayPianoNotes = (isChecked) => {
+    
+      let pianoNotes = document.querySelectorAll('.pianoNotes');
+      
+      pianoNotes.forEach(p => {
+        p.style.visibility = isChecked ? 'visible' : 'hidden';
+      });
+  };
+
+  const setNaturalNotes = (isChecked) => {
+    if (isChecked) {
+      let pianoNotes = document.querySelectorAll('.sharps-and-flats');
+      pianoNotes.forEach(p => {
+        p.style.display = 'block';
+      });
+    } else {
+      let pianoNotes = document.querySelectorAll('.sharps-and-flats');
+      pianoNotes.forEach(p => {
+        p.style.display = 'none';
+      });
+    }
+  };
+
   return (
     <div id="body">
       <header class="header">
@@ -189,6 +226,25 @@ const App = () => {
             ))}
           </select>
         </div>
+        <>
+
+          <label className="container"><pre>  Display Keyboard Letters</pre>
+            <input class="checkbox-1" type="checkbox" defaultChecked onChange={(event) => setDisplayKeyboardLetters(event.target.checked)}/>
+            <span className="checkmark"></span>
+          </label>
+
+          <label className="container"><pre>  Display Piano Notes</pre>
+            <input class="checkbox-2" type="checkbox" defaultChecked onChange={(event) => setDisplayPianoNotes(event.target.checked)}/>
+            <span className="checkmark"></span>
+          </label>
+
+          <label className="container"><pre>  Display Sharps and Flats</pre>
+            <input class="checkbox-3" type="checkbox" defaultChecked onChange={(event) => setNaturalNotes(event.target.checked)}/>
+            <span className="checkmark"></span>
+          </label>
+
+        </>
+
     </header>
       {/* Notes and YouTube Embed Container */}
       <div className="notes-youtube-container">
@@ -212,27 +268,102 @@ const App = () => {
           {renderDescriptionContent(selectedSongDetails.description)}
         </div>
       </div>
-      <div className="App" style={{ height: '24vh', position: 'absolute', bottom: 0, width: '100%', margin: 0, display: 'flex'}}>
-        {Object.entries(keyBindings).map(([key, note]) => (
-          <div
-            key={note}
-            style={{
-              flexGrow: 1,
-              height: '100%',
-              alignSelf: 'flex-end',
-              backgroundColor: pressedKeys[key] ? 'lightgreen' : note.includes('S') ? 'black' : 'white',
-              color: note.includes('S') ? 'white' : 'black',
-              border: '1px solid black',
-              opacity: 1,
-              userSelect: 'none'
-            }}
-          >
-            {note.replace('S', '#')}
-          </div>
-        ))}
+
+
+      <div className="App" style={{ height: '22vh', position: 'absolute', bottom: 0, left: 325, width: '60%', margin: 0, display: 'flex'}}>
+        {Object.entries(keyBindings).map(([key, note]) => {
+          let bottom = 35;
+          let left = 0;
+          switch (note) {
+            case 'CS':
+              left = 55;
+              break;
+            case 'DS':
+              left = 137;
+              break;
+            case 'FS':
+              left = 295;
+              break;
+            case 'GS':
+              left = 377;
+              break;
+            case 'AS':
+              left = 459;
+              break;
+            case 'CS2':
+              left = 629;
+              break;
+            case 'DS2':
+              left = 719;
+              break;
+          }
+          if (note.includes('S')) {
+            return (
+              <div class="sharps-and-flats"
+                key={note}
+                style={{
+                  position: 'absolute',
+                  bottom: `${bottom}px`, // Adjust bottom position
+                  left: `${left}px`, // Adjust left position
+                  height: '126px',
+                  width: '52px',
+                  backgroundColor: pressedKeys[key] ? '#07a038' : note.includes('S') ? 'black' : 'white',
+                  color: note.includes('S') ? 'white' : 'black',
+                  border: '1px solid black',
+                  borderRadius: '5px',
+                  opacity: 1,
+                  userSelect: 'none'
+                }}
+              >
+                <p class="pianoNotes">{note.replace('S', '#')}</p>
+              </div>
+            );
+          } else {
+            return (
+              <div
+                key={note}
+                style={{
+                  flexGrow: 1,
+                  height: '100%',
+                  alignSelf: 'flex-end',
+                  backgroundColor: pressedKeys[key] ? '#1cc852' : note.includes('S') ? 'black' : 'white',
+                  color: note.includes('S') ? 'white' : 'black',
+                  border: '1px solid black',
+                  borderRadius: '5px',
+                  opacity: 1,
+                  userSelect: 'none'
+                }}
+              >
+                <p class="pianoNotes">{note.replace('S', '#')}</p>
+              </div>
+            );
+          }
+        })}
       </div>
+
+      <p class="keyboard-letters" style={{ position: 'absolute', bottom: '0px', left: '361px' }}>a</p>
+      <p class="keyboard-letters" style={{ color: 'white', position: 'absolute', bottom: '27px', left: '400px' }}>w</p>
+      <p class="keyboard-letters" style={{ position: 'absolute', bottom: '0px', left: '443px' }}>s</p>
+      <p class="keyboard-letters" style={{ color: 'white', position: 'absolute', bottom: '27px', left: '484px' }}>e</p>
+      <p class="keyboard-letters" style={{ position: 'absolute', bottom: '0px', left: '524px' }}>d</p>
+      <p class="keyboard-letters" style={{ position: 'absolute', bottom: '0px', left: '605px' }}>f</p>
+      <p class="keyboard-letters" style={{ color: 'white', position: 'absolute', bottom: '27px', left: '642px' }}>t</p>
+      <p class="keyboard-letters" style={{ position: 'absolute', bottom: '0px', left: '682px' }}>g</p>
+      <p class="keyboard-letters" style={{ color: 'white', position: 'absolute', bottom: '27px', left: '724px' }}>y</p>
+      <p class="keyboard-letters" style={{ position: 'absolute', bottom: '0px', left: '764px' }}>h</p>
+      <p class="keyboard-letters" style={{ color: 'white', position: 'absolute', bottom: '27px', left: '806px' }}>u</p>
+      <p class="keyboard-letters" style={{ position: 'absolute', bottom: '0px', left: '848px' }}>j</p>
+      <p class="keyboard-letters" style={{ position: 'absolute', bottom: '0px', left: '929px' }}>k</p>
+      <p class="keyboard-letters" style={{ color: 'white', position: 'absolute', bottom: '27px', left: '975px' }}>o</p>
+      <p class="keyboard-letters" style={{ position: 'absolute', bottom: '0px', left: '1021px' }}>l</p>
+      <p class="keyboard-letters" style={{ color: 'white', position: 'absolute', bottom: '27px', left: '1065px' }}>p</p>
+      <p class="keyboard-letters" style={{ position: 'absolute', bottom: '0px', left: '1113px' }}>;</p>
+      <p class="keyboard-letters" style={{ position: 'absolute', bottom: '0px', left: '1200px' }}>'</p>
+
     </div>
   );
 };
+
+
 
 export default App;

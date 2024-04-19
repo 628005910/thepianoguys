@@ -47,15 +47,13 @@ body {
   
   gap: 20px; /* Adds space between the dropdowns */
 
-  
-
 }
 
 .dropdown, #home-button {
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    cursor: pointer;
 }
 
 #home-button {
@@ -75,7 +73,7 @@ body {
 .notes {
   flex: 1; /* Take up equal space */
   padding-left: 3%;
-  padding-right: 2%;
+  padding-right: 1%;
 
   display: flex; /* Use flexbox layout */
   justify-content: center; /* Center the image horizontally */
@@ -114,7 +112,7 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
   
   width: 100%;
-  height: 100%;
+  height: 397px;
 
   align-items: center;
   align-content: center;
@@ -123,7 +121,7 @@ body {
 
 .youtube-iframe {
   width: 100%; /* Full width of the container */
-  height: 375px; /* Adjust height as needed */
+  height: 397px; /* Adjust height as needed */
   
 }
 
@@ -160,5 +158,109 @@ body {
   padding: 0;
   margin: 0;
 }
+
+.container {
+  display: block;
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 20px;
+  margin-top: 27px;
+  margin-right: 12px;
+  margin-left: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  font-family: Goudy Old Style,Garamond,Big Caslon,Times New Roman,serif; 
+  font-size: 20px; /* Adjust font size as needed */
+  font-weight: 400; /* Normal font weight */
+  color: #242424; /* Professional text color */
+  line-height: 1.5; /* Adjust line height for readability */
+  letter-spacing: 0.5px; /* Add slight letter spacing for clarity */
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+
+  margin-right: 0px;
+}
+
+#little-notes {
+
+  font-family: Goudy Old Style,Garamond,Big Caslon,Times New Roman,serif; 
+}
+
+pre {
+  margin: 0;
+  font-family: Goudy Old Style,Garamond,Big Caslon,Times New Roman,serif; 
+  font-size: 20px; /* Adjust font size as needed */
+  font-weight: 400; /* Normal font weight */
+  color: #242424; /* Professional text color */
+  line-height: 1.5; /* Adjust line height for readability */
+  letter-spacing: 0.5px; /* Add slight letter spacing for clarity */
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #179191;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.pianoNotes {
+  text-align: center;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.checkbox {
+  margin-right: 10px;
+}
+
+
 
 
