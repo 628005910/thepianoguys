@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { Link } from 'react-router-dom';
+import YouTube, { YouTubePlayer } from "react-youtube";
 
 const keyBindings = {
   'a': 'C',
@@ -31,7 +32,7 @@ const songs = {
   'Easy': {
     'Mary Had a Little Lamb': {
       notes: 'E D C D E E E D D D E G G E D C D E E E E D D E D C',
-      youtube: 'https://www.youtube.com/watch?v=uYgp3lAfolo',
+      youtube: 'uYgp3lAfolo',
       description: 'Mary Had a Little Lamb is an American nursery rhyme of nineteenth-century. This song is the first instance of English verse recorded on Thomas Edison’s phonograph. This simple verse is perfect for getting started with playing the piano.',
     },
     'Hot Cross Buns': {
@@ -104,12 +105,14 @@ const renderNotesContent = (notes) => {
 const renderDescriptionContent = (description) => {
   return <p id="description">{description}</p>
 }
+let videoElement: YouTubePlayer = null;
 
 const App = () => {
   const [pressedKeys, setPressedKeys] = useState({});
   const [audioNodes, setAudioNodes] = useState({});
   const [selectedMode, setSelectedMode] = useState(modes[0]);
   const [selectedSong, setSelectedSong] = useState(Object.keys(songs[modes[0]])[0]);
+  const [isPaused, setIsPaused] = useState(false);
   const selectedSongDetails = songs[selectedMode][selectedSong];
 
   const handleModeChange = (event) => {
@@ -120,14 +123,84 @@ const App = () => {
   const handleSongChange = (event) => {
     setSelectedSong(event.target.value);
   };
-  
+
+  const togglePause = () => {
+    setIsPaused(!isPaused);
+  };
+
+  const _onReady = (event: YouTubePlayer) => {
+    videoElement = event;
+  };
+
+  useEffect(() => {
+    if (videoElement) {
+      // get current time
+      const elapsed_seconds = videoElement.target.getCurrentTime();
+
+      // calculations
+      const elapsed_milliseconds = Math.floor(elapsed_seconds * 1000);
+      const ms = elapsed_milliseconds % 1000;
+      const min = Math.floor(elapsed_milliseconds / 60000);
+      const seconds = Math.floor((elapsed_milliseconds - min * 60000) / 1000);
+
+      const formattedCurrentTime =
+        min.toString().padStart(2, "0") +
+        ":" +
+        seconds.toString().padStart(2, "0") +
+        ":" +
+        ms.toString().padStart(3, "0");
+
+      console.log(formattedCurrentTime);
+
+      // Pause and Play video
+      if (isPaused) {
+        videoElement.target.pauseVideo();
+      } else {
+        videoElement.target.playVideo();
+      }
+    }
+  }, [isPaused, videoElement]);
+
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      if (videoElement && videoElement.target.getCurrentTime() > 0) {
+        const elapsed_seconds = videoElement.target.getCurrentTime();
+
+        // calculations
+        const elapsed_milliseconds = Math.floor(elapsed_seconds * 1000);
+        const ms = elapsed_milliseconds % 1000;
+        const min = Math.floor(elapsed_milliseconds / 60000);
+        const seconds = Math.floor((elapsed_milliseconds - min * 60000) / 1000);
+
+        const formattedCurrentTime =
+          min.toString().padStart(2, "0") +
+          ":" +
+          seconds.toString().padStart(2, "0") +
+          ":" +
+          ms.toString().padStart(3, "0");
+
+        console.log(formattedCurrentTime);
+
+        // verify video status
+        if (videoElement.target.playerInfo.playerState === 1) {
+          console.log("the video is running");
+        } else if (videoElement.target.playerInfo.playerState === 2) {
+          console.log("the video is paused");
+        }
+      }
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
   const playNote = (note) => {
     const audioSource = audioContext.createBufferSource();
     fetch(`sounds/${note}.mp3`)
       .then((response) => response.arrayBuffer())
       .then((arrayBuffer) => audioContext.decodeAudioData(arrayBuffer))
       .then((audioBuffer) => {
-        console.log("xdsedsadsadas");
         audioSource.buffer = audioBuffer;
         audioSource.connect(audioContext.destination);
         audioSource.start(0);
@@ -152,6 +225,13 @@ const App = () => {
       if (keyBindings[key] && !pressedKeys[key]) {
         setPressedKeys((currentKeys) => ({ ...currentKeys, [key]: true }));
         playNote(keyBindings[key]);
+      } else if (key === " ") {
+        e.preventDefault(); // Prevent default behavior of space key (e.g., scrolling)
+        togglePause();
+      } else if (key === "arrowleft") {
+        videoElement.target.seekTo(videoElement.target.getCurrentTime() - 5, true);
+      } else if (key === "arrowright") {
+        videoElement.target.seekTo(videoElement.target.getCurrentTime() + 5, true);
       }
     };
 
@@ -257,14 +337,7 @@ const App = () => {
           </div>
         </div>
         <div className="youtube-embed">
-          <iframe
-            className="youtube-iframe"
-            src={`https://www.youtube.com/embed/${new URL(selectedSongDetails.youtube).searchParams.get('v')}`}
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
+          <YouTube videoId={selectedSongDetails.youtube} onReady={_onReady}/>
         </div>
         <div className="description">
           <h2 id="description-header">Description</h2>
